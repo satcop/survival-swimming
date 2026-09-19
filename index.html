@@ -333,6 +333,15 @@
       transition: all 0.25s ease;
       cursor: pointer;
       margin-left: 6px;
+      border: none;
+      outline: none;
+      font-family: inherit;
+    }
+
+    .cover-download-btn.btn-pdf {
+      background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+      color: #15803d;
+      border: 1px solid #bbf7d0;
     }
 
     .cover-download-btn:hover {
@@ -340,6 +349,12 @@
       transform: translateY(-2px);
       box-shadow: 0 6px 16px rgba(0, 0, 0, 0.22);
       color: #0284c7;
+    }
+
+    .cover-download-btn.btn-pdf:hover {
+      background: #bbf7d0;
+      color: #166534;
+      box-shadow: 0 6px 16px rgba(22, 101, 52, 0.22);
     }
 
     .cover-download-btn:active {
@@ -828,6 +843,129 @@
         display: none;
       }
     }
+
+    /* Print & PDF Export Styles */
+    @media print {
+      @page {
+        size: A4 landscape;
+        margin: 0;
+      }
+
+      *, *::before, *::after {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+      }
+
+      html, body {
+        width: 100% !important;
+        height: auto !important;
+        min-height: 100% !important;
+        background: #ffffff !important;
+        color: #1e293b !important;
+        overflow: visible !important;
+        font-size: 13px !important;
+      }
+
+      .bg-decorations,
+      .presentation-controls,
+      .keyboard-hint,
+      .cover-download-btn {
+        display: none !important;
+      }
+
+      .presentation-container {
+        display: block !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        overflow: visible !important;
+      }
+
+      .slide-wrapper {
+        display: block !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
+        aspect-ratio: auto !important;
+        box-shadow: none !important;
+        border: none !important;
+        border-radius: 0 !important;
+        background: transparent !important;
+        overflow: visible !important;
+      }
+
+      .slides-viewport {
+        display: block !important;
+        position: static !important;
+        width: 100% !important;
+        height: auto !important;
+        overflow: visible !important;
+      }
+
+      .slide {
+        display: flex !important;
+        flex-direction: column !important;
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        width: 100% !important;
+        min-height: 100vh !important;
+        height: 100vh !important;
+        max-height: 100vh !important;
+        box-sizing: border-box !important;
+        padding: 36px 48px !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+        page-break-after: always !important;
+        break-after: page !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+        background: #ffffff !important;
+        overflow: hidden !important;
+      }
+
+      .slide.slide-cover {
+        background: linear-gradient(135deg, #0284c7 0%, #0369a1 50%, #0f172a 100%) !important;
+        color: #ffffff !important;
+        justify-content: center !important;
+        align-items: center !important;
+        text-align: center !important;
+      }
+
+      .slide.slide-cover .cover-title span {
+        -webkit-text-fill-color: #ffffff !important;
+        color: #ffffff !important;
+      }
+
+      .slide.slide-cover .cover-subtitle {
+        color: #e0f2fe !important;
+        background: rgba(0, 0, 0, 0.25) !important;
+      }
+
+      .slide.slide-cover .cover-meta {
+        background: rgba(255, 255, 255, 0.15) !important;
+        border: 1px solid rgba(255, 255, 255, 0.3) !important;
+      }
+
+      .feature-card,
+      .info-stat-card,
+      .timeline-card,
+      .summary-box {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+        border: 1px solid #cbd5e1 !important;
+      }
+
+      .feature-card.highlight {
+        border-color: #0284c7 !important;
+        background: #f0f9ff !important;
+      }
+    }
   </style>
 </head>
 
@@ -879,6 +1017,10 @@
               <span>📥</span>
               <span>교육계획안 다운로드</span>
             </a>
+            <button type="button" id="exportPdfBtn" class="cover-download-btn btn-pdf" title="전체 슬라이드를 PDF로 인쇄/저장">
+              <span>📄</span>
+              <span>슬라이드 PDF 저장</span>
+            </button>
           </div>
         </section>
 
@@ -1319,6 +1461,13 @@
             document.exitFullscreen();
           }
         }
+      }
+
+      const exportPdfBtn = document.getElementById('exportPdfBtn');
+      if (exportPdfBtn) {
+        exportPdfBtn.addEventListener('click', () => {
+          window.print();
+        });
       }
 
       fullscreenBtn.addEventListener('click', toggleFullscreen);
