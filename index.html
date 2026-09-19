@@ -292,14 +292,17 @@
 
     .cover-meta {
       display: flex;
-      gap: 24px;
+      align-items: center;
+      gap: 20px;
       background: rgba(255, 255, 255, 0.1);
       backdrop-filter: blur(12px);
       border: 1px solid rgba(255, 255, 255, 0.2);
-      padding: 16px 36px;
+      padding: 14px 32px;
       border-radius: 50px;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
       animation: fadeInUp 0.9s ease-out;
+      flex-wrap: wrap;
+      justify-content: center;
     }
 
     .cover-meta-item {
@@ -313,6 +316,34 @@
     .cover-meta-item strong {
       font-weight: 700;
       color: #ffffff;
+    }
+
+    .cover-download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 18px;
+      background: #ffffff;
+      color: #0369a1;
+      font-size: 0.98rem;
+      font-weight: 700;
+      border-radius: 30px;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      transition: all 0.25s ease;
+      cursor: pointer;
+      margin-left: 6px;
+    }
+
+    .cover-download-btn:hover {
+      background: #e0f2fe;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.22);
+      color: #0284c7;
+    }
+
+    .cover-download-btn:active {
+      transform: translateY(0);
     }
 
     /* Cards & Grids */
@@ -844,6 +875,10 @@
               <span>⏱️</span>
               <span>소요시간 : <strong>30분</strong></span>
             </div>
+            <a href="doc/교육계획안(생존수영)_박규태.hwp" download="교육계획안(생존수영)_박규태.hwp" class="cover-download-btn" title="교육계획안(생존수영)_박규태.hwp 다운로드">
+              <span>📥</span>
+              <span>교육계획안 다운로드</span>
+            </a>
           </div>
         </section>
 
