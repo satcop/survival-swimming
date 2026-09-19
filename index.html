@@ -1,0 +1,1297 @@
+<!doctype html>
+<html class="no-js" lang="ko">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>생존수영(Survival Swimming) 교육계획안</title>
+  <link rel="stylesheet" href="css/style.css">
+  <meta name="description" content="생존수영 교육계획안 프레젠테이션 - 기초잠수를 통해서 물과 친해지기">
+
+  <meta property="og:title" content="생존수영(Survival Swimming) 교육계획안">
+  <meta property="og:type" content="website">
+
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon.png">
+
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#0284c7">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #0284c7;
+      --primary-dark: #0369a1;
+      --primary-deep: #0c4a6e;
+      --primary-light: #e0f2fe;
+      --accent: #06b6d4;
+      --accent-warm: #f59e0b;
+      --danger: #ef4444;
+      --success: #10b981;
+      --bg-gradient-start: #0f172a;
+      --bg-gradient-end: #1e293b;
+      --slide-bg: #ffffff;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --border-color: #e2e8f0;
+      --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.07);
+      --shadow-md: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+      --shadow-lg: 0 20px 30px -10px rgba(0, 0, 0, 0.15);
+      --font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans KR", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-family: var(--font-family);
+      background: linear-gradient(135deg, #0b192c 0%, #1e3e62 50%, #000000 100%);
+      color: var(--text-main);
+      user-select: none;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Presentation Frame */
+    .presentation-container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px 40px 60px;
+    }
+
+    /* Background Water Wave Glow Effect */
+    .bg-decorations {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .bg-circle-1 {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(2, 132, 199, 0.25) 0%, rgba(2, 132, 199, 0) 70%);
+      top: -150px;
+      left: -150px;
+      filter: blur(40px);
+    }
+
+    .bg-circle-2 {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(6, 182, 212, 0.2) 0%, rgba(6, 182, 212, 0) 70%);
+      bottom: -100px;
+      right: -100px;
+      filter: blur(50px);
+    }
+
+    /* Main Slide Card (16:9 Aspect Ratio on Desktop) */
+    .slide-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 1400px;
+      height: 100%;
+      max-height: 850px;
+      background: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.1);
+      overflow: hidden;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Slides Viewport */
+    .slides-viewport {
+      position: relative;
+      flex: 1;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    /* Single Slide */
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      padding: 48px 60px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateX(60px) scale(0.98);
+      transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                  transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                  visibility 0.5s;
+      display: flex;
+      flex-direction: column;
+      background: #ffffff;
+      overflow-y: auto;
+    }
+
+    .slide.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(0) scale(1);
+      z-index: 2;
+    }
+
+    .slide.prev-slide {
+      transform: translateX(-60px) scale(0.98);
+    }
+
+    /* Slide Header */
+    .slide-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding-bottom: 20px;
+      margin-bottom: 28px;
+      border-bottom: 2px solid #f1f5f9;
+      position: relative;
+    }
+
+    .slide-header::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 80px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      border-radius: 2px;
+    }
+
+    .slide-category {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--primary);
+      margin-bottom: 6px;
+    }
+
+    .slide-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--primary-deep);
+      letter-spacing: -0.5px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .slide-time-tag {
+      background: linear-gradient(135deg, var(--primary-light), #cffafe);
+      color: var(--primary-dark);
+      font-size: 0.95rem;
+      font-weight: 700;
+      padding: 6px 16px;
+      border-radius: 30px;
+      border: 1px solid rgba(2, 132, 199, 0.15);
+    }
+
+    /* Slide Content Grid Layouts */
+    .slide-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    /* Cover Slide Specifics */
+    .slide-cover {
+      background: linear-gradient(135deg, #0c4a6e 0%, #0369a1 50%, #0284c7 100%);
+      color: #ffffff;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      padding: 60px;
+    }
+
+    .cover-decor {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      pointer-events: none;
+    }
+    .cover-decor-1 { width: 400px; height: 400px; top: -100px; right: -80px; }
+    .cover-decor-2 { width: 300px; height: 300px; bottom: -80px; left: -60px; }
+
+    .cover-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(8px);
+      padding: 8px 20px;
+      border-radius: 30px;
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      margin-bottom: 24px;
+      animation: fadeInDown 0.8s ease-out;
+    }
+
+    .cover-title {
+      font-size: 3.4rem;
+      font-weight: 900;
+      line-height: 1.25;
+      margin-bottom: 16px;
+      letter-spacing: -1px;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      animation: zoomIn 0.8s ease-out;
+    }
+
+    .cover-title span {
+      background: linear-gradient(180deg, #ffffff 0%, #bae6fd 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .cover-subtitle {
+      font-size: 1.65rem;
+      font-weight: 500;
+      color: #e0f2fe;
+      margin-bottom: 48px;
+      display: inline-block;
+      padding: 6px 24px;
+      background: rgba(0, 0, 0, 0.15);
+      border-radius: 12px;
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    .cover-meta {
+      display: flex;
+      gap: 24px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 16px 36px;
+      border-radius: 50px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      animation: fadeInUp 0.9s ease-out;
+    }
+
+    .cover-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.15rem;
+      font-weight: 500;
+    }
+
+    .cover-meta-item strong {
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    /* Cards & Grids */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      height: 100%;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .info-stat-card {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      padding: 20px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      transition: all 0.3s ease;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .info-stat-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+      border-color: #cbd5e1;
+    }
+
+    .stat-label {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .stat-value {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--primary-deep);
+    }
+
+    /* Feature Presentation Cards */
+    .feature-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 24px 28px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .feature-card.highlight {
+      background: linear-gradient(145deg, #f0f9ff, #e0f2fe);
+      border-color: #bae6fd;
+    }
+
+    .card-icon-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .icon-box {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      box-shadow: 0 4px 10px rgba(2, 132, 199, 0.3);
+    }
+
+    .card-icon-title h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--primary-deep);
+    }
+
+    .custom-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .custom-list li {
+      position: relative;
+      padding-left: 26px;
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: #334155;
+    }
+
+    .custom-list li::before {
+      content: "•";
+      position: absolute;
+      left: 6px;
+      top: -2px;
+      font-size: 1.6rem;
+      color: var(--primary);
+    }
+
+    /* Warning / Safety Box */
+    .notice-box {
+      background: #fffbeb;
+      border: 1.5px solid #fde68a;
+      border-radius: 14px;
+      padding: 18px 24px;
+      margin-top: 20px;
+    }
+
+    .notice-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 700;
+      color: #b45309;
+      font-size: 1rem;
+      margin-bottom: 8px;
+    }
+
+    .notice-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .notice-list li {
+      position: relative;
+      padding-left: 20px;
+      font-size: 0.95rem;
+      color: #92400e;
+      font-weight: 500;
+    }
+
+    .notice-list li::before {
+      content: "!";
+      position: absolute;
+      left: 0;
+      top: 1px;
+      width: 15px;
+      height: 15px;
+      background: #f59e0b;
+      color: #ffffff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 800;
+    }
+
+    /* Sequence Steps in Development Slide */
+    .steps-flow {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .step-flow-item {
+      background: #f8fafc;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 14px;
+      padding: 18px 20px;
+      display: flex;
+      gap: 16px;
+      transition: all 0.25s ease;
+    }
+
+    .step-flow-item:hover {
+      border-color: var(--primary);
+      background: #ffffff;
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+
+    .step-flow-num {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 4px 8px rgba(2, 132, 199, 0.25);
+    }
+
+    .step-flow-content h4 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--primary-deep);
+      margin-bottom: 6px;
+    }
+
+    .step-flow-content p {
+      font-size: 0.94rem;
+      color: #475569;
+      line-height: 1.5;
+    }
+
+    .step-sub-desc {
+      margin-top: 8px;
+      padding: 8px 12px;
+      background: #f0fdf4;
+      border-left: 3px solid #22c55e;
+      border-radius: 0 6px 6px 0;
+      font-size: 0.88rem;
+      color: #15803d;
+    }
+
+    /* Checklist Box */
+    .checklist-box {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      padding: 16px 20px;
+      border-radius: 12px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .check-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #dcfce7;
+      color: #16a34a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 1.05rem;
+      flex-shrink: 0;
+    }
+
+    .check-text {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #1e293b;
+      line-height: 1.5;
+    }
+
+    /* Post Activity Card */
+    .post-card {
+      background: linear-gradient(135deg, #ecfdf5, #f0fdf4);
+      border: 1.5px solid #a7f3d0;
+      border-radius: 16px;
+      padding: 24px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .post-card .icon-box {
+      background: linear-gradient(135deg, #10b981, #059669);
+      width: 54px;
+      height: 54px;
+      font-size: 1.6rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    }
+
+    .post-card p {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #065f46;
+      line-height: 1.6;
+    }
+
+    /* Navigation Bar / Controls */
+    .presentation-controls {
+      position: absolute;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 8px 20px;
+      border-radius: 40px;
+      z-index: 100;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    }
+
+    .nav-btn {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: all 0.2s ease;
+      outline: none;
+    }
+
+    .nav-btn:hover:not(:disabled) {
+      background: var(--primary);
+      border-color: var(--primary);
+      transform: scale(1.1);
+    }
+
+    .nav-btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+
+    .slide-dots {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 5px;
+      background: rgba(255, 255, 255, 0.3);
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .dot.active {
+      width: 28px;
+      background: var(--primary);
+    }
+
+    .dot:hover:not(.active) {
+      background: rgba(255, 255, 255, 0.6);
+    }
+
+    .slide-counter {
+      color: #e2e8f0;
+      font-size: 0.92rem;
+      font-weight: 600;
+      padding: 0 8px;
+      letter-spacing: 1px;
+    }
+
+    .fs-btn {
+      font-size: 0.95rem;
+    }
+
+    /* Keyboard Guide Hint */
+    .keyboard-hint {
+      position: absolute;
+      bottom: 22px;
+      right: 40px;
+      color: rgba(255, 255, 255, 0.45);
+      font-size: 0.85rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      z-index: 50;
+    }
+
+    .kbd {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 4px;
+      padding: 2px 6px;
+      font-size: 0.78rem;
+      color: #ffffff;
+      box-shadow: 0 2px 0 rgba(0, 0, 0, 0.3);
+    }
+
+    /* Keyframe Animations */
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes zoomIn {
+      from { opacity: 0; transform: scale(0.92); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* Responsive Design for Smaller Screens / Tablets */
+    @media (max-width: 1024px) {
+      .presentation-container {
+        padding: 10px 10px 70px;
+      }
+      .slide {
+        padding: 30px 36px;
+      }
+      .cover-title {
+        font-size: 2.5rem;
+      }
+      .cover-subtitle {
+        font-size: 1.25rem;
+      }
+      .grid-2 {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .grid-3, .grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .steps-flow {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .presentation-container {
+        padding: 0 0 65px;
+      }
+      .slide-wrapper {
+        border-radius: 0;
+        max-height: 100%;
+      }
+      .slide {
+        padding: 24px 20px;
+      }
+      .slide-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        margin-bottom: 20px;
+      }
+      .slide-title {
+        font-size: 1.5rem;
+      }
+      .cover-title {
+        font-size: 1.9rem;
+      }
+      .cover-subtitle {
+        font-size: 1.05rem;
+        padding: 4px 12px;
+      }
+      .cover-meta {
+        flex-direction: column;
+        gap: 8px;
+        border-radius: 20px;
+        padding: 12px 20px;
+      }
+      .keyboard-hint {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="presentation-container" id="presentationContainer">
+    <!-- Ambient glowing backgrounds -->
+    <div class="bg-decorations">
+      <div class="bg-circle-1"></div>
+      <div class="bg-circle-2"></div>
+    </div>
+
+    <!-- Main Slide Box -->
+    <div class="slide-wrapper">
+      <div class="slides-viewport" id="slidesViewport">
+
+        <!-- SLIDE 1: Cover -->
+        <section class="slide slide-cover active" data-slide="1">
+          <div class="cover-decor cover-decor-1"></div>
+          <div class="cover-decor cover-decor-2"></div>
+
+          <div class="cover-badge">
+            <span>🏊‍♂️</span>
+            <span>생존수영 교육계획안</span>
+          </div>
+
+          <h1 class="cover-title">
+            <span>생존수영</span><br>(Survival Swimming)
+          </h1>
+
+          <div class="cover-subtitle">
+            기초잠수를 통해서 물과 친해지기
+          </div>
+
+          <div class="cover-meta">
+            <div class="cover-meta-item">
+              <span>👤</span>
+              <span>작성자 / 강사 : <strong>박규태</strong></span>
+            </div>
+            <div class="cover-meta-item">
+              <span>🎯</span>
+              <span>대상 : <strong>초등학생</strong></span>
+            </div>
+            <div class="cover-meta-item">
+              <span>⏱️</span>
+              <span>소요시간 : <strong>30분</strong></span>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 2: 교육 개요 및 목표 -->
+        <section class="slide" data-slide="2">
+          <div class="slide-header">
+            <div>
+              <div class="slide-category">Overview & Objectives</div>
+              <h2 class="slide-title">📌 교육 개요 및 목표</h2>
+            </div>
+            <div class="slide-time-tag">전체 30분 구성</div>
+          </div>
+
+          <div class="slide-body">
+            <!-- Summary Stats -->
+            <div class="grid-4" style="margin-bottom: 24px;">
+              <div class="info-stat-card">
+                <span class="stat-label">👥 교육 대상 & 인원</span>
+                <span class="stat-value">초등학생 / 10명</span>
+              </div>
+              <div class="info-stat-card">
+                <span class="stat-label">⏱️ 총 교육 시간</span>
+                <span class="stat-value">30분 (실습 중심)</span>
+              </div>
+              <div class="info-stat-card">
+                <span class="stat-label">🏊 활동 유형</span>
+                <span class="stat-value">수중 실습 및 체험</span>
+              </div>
+              <div class="info-stat-card">
+                <span class="stat-label">🎯 핵심 주제</span>
+                <span class="stat-value">기초잠수 적응</span>
+              </div>
+            </div>
+
+            <!-- Objectives & Materials Cards -->
+            <div class="grid-2">
+              <div class="feature-card highlight">
+                <div class="card-icon-title">
+                  <div class="icon-box">🎯</div>
+                  <h3>핵심 교육 목표</h3>
+                </div>
+                <ul class="custom-list">
+                  <li><strong>물에 대한 공포심 해소:</strong> 잠수 및 바둑알 집기 놀이를 통해 물에 대한 두려움을 줄이고 물속 적응력을 높인다.</li>
+                  <li><strong>위급 상황 대처 능력 함양:</strong> 수중에서 눈을 뜨고 물체를 탐색하는 능력을 길러 위급 상황 시 신속한 대처 능력을 키운다.</li>
+                </ul>
+              </div>
+
+              <div class="feature-card">
+                <div class="card-icon-title">
+                  <div class="icon-box">📦</div>
+                  <h3>준비물 및 교육 자료</h3>
+                </div>
+                <ul class="custom-list">
+                  <li><strong>주요 교구:</strong> 바둑알 (수중 잠수 및 건지기 활동용)</li>
+                  <li><strong>안전/보조 교구:</strong> 수중 교구, 안전 킥판, 호루라기 등</li>
+                  <li><strong>사전 점검:</strong> 수심 및 수온 점검, 참가자 건강 상태 확인표</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 3: 도입 단계 -->
+        <section class="slide" data-slide="3">
+          <div class="slide-header">
+            <div>
+              <div class="slide-category">Phase 1 · Introduction</div>
+              <h2 class="slide-title">🏁 도입 단계 (05분)</h2>
+            </div>
+            <div class="slide-time-tag">소요시간 : 05분</div>
+          </div>
+
+          <div class="slide-body">
+            <div class="grid-2">
+              <div class="feature-card">
+                <div class="card-icon-title">
+                  <div class="icon-box">💡</div>
+                  <h3>교육 방법 및 진행 내용</h3>
+                </div>
+                <ul class="custom-list">
+                  <li>
+                    <strong>강사 소개 및 오리엔테이션</strong>
+                    <p style="font-size:0.95rem; color:#64748b; margin-top:4px;">강사 박규태 소개 및 오늘 진행할 생존수영 교육의 중요성과 흐름 안내</p>
+                  </li>
+                  <li>
+                    <strong>물놀이 안전수칙 교육</strong>
+                    <p style="font-size:0.95rem; color:#64748b; margin-top:4px;">수영장 내 안전 규칙 및 물속 잠수 활동의 필요성 설명</p>
+                  </li>
+                  <li>
+                    <strong>입수 전 준비운동</strong>
+                    <p style="font-size:0.95rem; color:#64748b; margin-top:4px;">발목, 무릎, 어깨 관절 중심 스트레칭 및 가벼운 심박 상승 운동 실시</p>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="feature-card" style="background:#fafafa;">
+                <div class="card-icon-title">
+                  <div class="icon-box" style="background:linear-gradient(135deg, #f59e0b, #d97706);">⚠️</div>
+                  <h3>자료 및 필수 주의사항</h3>
+                </div>
+
+                <div class="notice-box" style="margin-top:0;">
+                  <div class="notice-header">
+                    <span>🚨</span> 건강 상태 및 안전 최우선 파악
+                  </div>
+                  <ul class="notice-list">
+                    <li>수영 미숙자 및 물 공포증이 있는 학생 사전 면밀히 파악</li>
+                    <li>당일 학생들의 컨디션 및 체온, 건강 이상 유무 철저히 확인</li>
+                    <li>무리한 입수 강요 금지, 단계적인 적응 지도 진행</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 4: 전개 단계 -->
+        <section class="slide" data-slide="4">
+          <div class="slide-header">
+            <div>
+              <div class="slide-category">Phase 2 · Main Activity</div>
+              <h2 class="slide-title">🌊 전개 단계 (15분)</h2>
+            </div>
+            <div class="slide-time-tag">소요시간 : 15분 (메인 실습)</div>
+          </div>
+
+          <div class="slide-body">
+            <div class="steps-flow">
+              <!-- Step 1 -->
+              <div class="step-flow-item">
+                <div class="step-flow-num">1</div>
+                <div class="step-flow-content">
+                  <h4>물 적시기 및 호흡 연습</h4>
+                  <p>심장에서 먼 부위(<strong>발 → 무릎 → 팔 → 얼굴 → 가슴</strong>) 순으로 물을 적신 후, 심호흡 후 숨을 참고 잠수하는 기초 연습을 실시합니다.</p>
+                </div>
+              </div>
+
+              <!-- Step 2 -->
+              <div class="step-flow-item">
+                <div class="step-flow-num">2</div>
+                <div class="step-flow-content">
+                  <h4>바닥 물체 집기 연습</h4>
+                  <p>얕은 물속에서 서서히 눈을 뜨고 수영장 바닥을 손으로 터치하거나 놓인 물건을 집어보는 연습으로 시야를 확보합니다.</p>
+                </div>
+              </div>
+
+              <!-- Step 3 -->
+              <div class="step-flow-item">
+                <div class="step-flow-num">3</div>
+                <div class="step-flow-content">
+                  <h4>바둑알 건지기 놀이</h4>
+                  <p>얕은 물속에 바둑알을 뿌려두고 자연스럽게 잠수하여 바둑알을 찾아 건져오는 놀이 중심 활동을 진행합니다.</p>
+                </div>
+              </div>
+
+              <!-- Step 4 -->
+              <div class="step-flow-item">
+                <div class="step-flow-num">4</div>
+                <div class="step-flow-content">
+                  <h4>응용 활동 (심화 게임)</h4>
+                  <p>더 멀리 있거나 많은 양의 바둑알을 건져오는 미션 게임으로 흥미를 유발하고 수중 탐색 능력을 극대화합니다.</p>
+                  <div class="step-sub-desc">
+                    ✨ <strong>핵심 효과:</strong> 물에 대한 두려움 극복 & 위급 상황 수중 시야 확보 대처력 향상
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 전개 주의사항 -->
+            <div class="notice-box" style="margin-top: 18px;">
+              <div class="notice-header">
+                <span>⚠️</span> 전개 단계 안전 지도 지침
+              </div>
+              <ul class="notice-list" style="display:grid; grid-template-columns: 1fr 1fr; gap:10px;">
+                <li>학생들이 무리하게 오래 숨을 참지 않도록 지속적인 지도</li>
+                <li>바둑알 획득 경쟁 과열로 인한 충돌 및 안전사고 철저 예방</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 5: 마무리 단계 -->
+        <section class="slide" data-slide="5">
+          <div class="slide-header">
+            <div>
+              <div class="slide-category">Phase 3 · Wrap-up</div>
+              <h2 class="slide-title">🧘 마무리 단계 (05분)</h2>
+            </div>
+            <div class="slide-time-tag">소요시간 : 05분</div>
+          </div>
+
+          <div class="slide-body">
+            <div class="grid-2">
+              <div class="feature-card highlight">
+                <div class="card-icon-title">
+                  <div class="icon-box" style="background:linear-gradient(135deg, #0ea5e9, #0284c7);">1</div>
+                  <h3>정리 운동 및 이완</h3>
+                </div>
+                <p style="font-size: 1.15rem; color:#334155; line-height: 1.7; margin-bottom: 12px;">
+                  활동 후 흥분된 근육과 심폐 기능을 안정화시키는 단계입니다.
+                </p>
+                <ul class="custom-list">
+                  <li><strong>호흡 정리:</strong> 깊은 복식호흡을 통한 심박수 안정화</li>
+                  <li><strong>정리 스트레칭:</strong> 어깨, 팔, 다리 등 전신 근육 가벼운 스트레칭</li>
+                  <li><strong>체온 유지:</strong> 비치타월 착용 및 체온 저하 방지</li>
+                </ul>
+              </div>
+
+              <div class="feature-card highlight">
+                <div class="card-icon-title">
+                  <div class="icon-box" style="background:linear-gradient(135deg, #0284c7, #0369a1);">2</div>
+                  <h3>정리 및 피드백</h3>
+                </div>
+                <p style="font-size: 1.15rem; color:#334155; line-height: 1.7; margin-bottom: 12px;">
+                  오늘의 성취감을 나누고 긍정적인 수중 경험을 내재화합니다.
+                </p>
+                <ul class="custom-list">
+                  <li><strong>소감 나누기:</strong> 바둑알 집기 놀이를 통해 물과 친해진 소감 발표</li>
+                  <li><strong>칭찬과 격려:</strong> 물에 대한 두려움을 극복한 학생들에 대한 피드백</li>
+                  <li><strong>차시 예고:</strong> 다음 생존수영 단계에 대한 기대감 부여</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 6: 교육 평가 및 사후 활동 -->
+        <section class="slide" data-slide="6">
+          <div class="slide-header">
+            <div>
+              <div class="slide-category">Evaluation & Next Step</div>
+              <h2 class="slide-title">📊 교육 평가 및 사후 활동</h2>
+            </div>
+            <div class="slide-time-tag">성취도 점검</div>
+          </div>
+
+          <div class="slide-body">
+            <div class="grid-2">
+              <!-- Evaluation Checklist -->
+              <div class="feature-card">
+                <div class="card-icon-title">
+                  <div class="icon-box">📋</div>
+                  <h3>교육 성취도 평가 기준</h3>
+                </div>
+                <div class="checklist-box">
+                  <div class="check-item">
+                    <div class="check-icon">✓</div>
+                    <div class="check-text">
+                      잠수하여 바둑알을 성공적으로 집어오며 물속에서 눈을 뜨고 자유롭게 활동할 수 있는가?
+                    </div>
+                  </div>
+                  <div class="check-item">
+                    <div class="check-icon">✓</div>
+                    <div class="check-text">
+                      물에 대한 공포와 두려움이 줄어들고 물속 적응력이 눈에 띄게 향상되었는가?
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Post Activity -->
+              <div class="feature-card" style="justify-content: center; gap: 20px;">
+                <div class="card-icon-title">
+                  <div class="icon-box" style="background: linear-gradient(135deg, #10b981, #059669);">🌱</div>
+                  <h3>교육 후 연계 활동</h3>
+                </div>
+
+                <div class="post-card">
+                  <div class="icon-box">🌊</div>
+                  <p>
+                    물놀이 및 수상안전에 지속적인 관심을 가지며 다양한 수중 적응 활동(잎새뜨기, 배영 기초 등)을 단계별로 경험해 본다.
+                  </p>
+                </div>
+
+                <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px; text-align: center; color: #64748b; font-size: 0.95rem;">
+                  🏊 <strong>생존수영 교육의 핵심</strong>은 반복적인 수중 적응과 안전 의식 확립에 있습니다.
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+
+    <!-- PPT Floating Control Bar -->
+    <div class="presentation-controls">
+      <button class="nav-btn" id="prevBtn" title="이전 슬라이드 (←)">❮</button>
+
+      <div class="slide-dots" id="slideDots">
+        <!-- Dots injected by JS -->
+      </div>
+
+      <div class="slide-counter" id="slideCounter">
+        <span id="currentSlideNum">1</span> / <span id="totalSlideNum">6</span>
+      </div>
+
+      <button class="nav-btn" id="nextBtn" title="다음 슬라이드 (→)">❯</button>
+
+      <button class="nav-btn fs-btn" id="fullscreenBtn" title="전체화면 전환 (F)">⛶</button>
+    </div>
+
+    <!-- Keyboard Guide -->
+    <div class="keyboard-hint">
+      <span>이동:</span>
+      <span class="kbd">←</span>
+      <span class="kbd">→</span>
+      <span class="kbd">Space</span>
+      <span style="margin-left:8px;">전체화면:</span>
+      <span class="kbd">F</span>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const slides = Array.from(document.querySelectorAll('.slide'));
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      const fullscreenBtn = document.getElementById('fullscreenBtn');
+      const currentSlideNum = document.getElementById('currentSlideNum');
+      const totalSlideNum = document.getElementById('totalSlideNum');
+      const slideDotsContainer = document.getElementById('slideDots');
+      const presentationContainer = document.getElementById('presentationContainer');
+
+      let currentIndex = 0;
+      const total = slides.length;
+      totalSlideNum.textContent = total;
+
+      // Generate Navigation Dots
+      slides.forEach((_, idx) => {
+        const dot = document.createElement('div');
+        dot.className = `dot ${idx === 0 ? 'active' : ''}`;
+        dot.title = `슬라이드 ${idx + 1}`;
+        dot.addEventListener('click', () => goToSlide(idx));
+        slideDotsContainer.appendChild(dot);
+      });
+
+      const dots = Array.from(document.querySelectorAll('.dot'));
+
+      function updateSlide(newIndex, direction) {
+        if (newIndex < 0 || newIndex >= total || newIndex === currentIndex) return;
+
+        const currentSlide = slides[currentIndex];
+        const nextSlide = slides[newIndex];
+
+        // Reset previous classes
+        slides.forEach(s => {
+          s.classList.remove('active', 'prev-slide');
+        });
+
+        if (newIndex > currentIndex) {
+          currentSlide.classList.add('prev-slide');
+        }
+
+        currentIndex = newIndex;
+        nextSlide.classList.add('active');
+
+        // Update UI counters and buttons
+        currentSlideNum.textContent = currentIndex + 1;
+        prevBtn.disabled = currentIndex === 0;
+        nextBtn.disabled = currentIndex === total - 1;
+
+        dots.forEach((dot, idx) => {
+          dot.classList.toggle('active', idx === currentIndex);
+        });
+      }
+
+      function goToSlide(index) {
+        updateSlide(index);
+      }
+
+      function prevSlide() {
+        if (currentIndex > 0) {
+          updateSlide(currentIndex - 1, 'prev');
+        }
+      }
+
+      function nextSlide() {
+        if (currentIndex < total - 1) {
+          updateSlide(currentIndex + 1, 'next');
+        }
+      }
+
+      // Event Listeners
+      prevBtn.addEventListener('click', prevSlide);
+      nextBtn.addEventListener('click', nextSlide);
+
+      // Keyboard Navigation
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+          e.preventDefault();
+          nextSlide();
+        } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+          e.preventDefault();
+          prevSlide();
+        } else if (e.key === 'Home') {
+          e.preventDefault();
+          goToSlide(0);
+        } else if (e.key === 'End') {
+          e.preventDefault();
+          goToSlide(total - 1);
+        } else if (e.key === 'f' || e.key === 'F') {
+          e.preventDefault();
+          toggleFullscreen();
+        }
+      });
+
+      // Touch / Swipe Navigation
+      let touchStartX = 0;
+      let touchEndX = 0;
+
+      window.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+      }, { passive: true });
+
+      window.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+      }, { passive: true });
+
+      function handleSwipe() {
+        const threshold = 50;
+        if (touchEndX < touchStartX - threshold) {
+          nextSlide();
+        } else if (touchEndX > touchStartX + threshold) {
+          prevSlide();
+        }
+      }
+
+      // Fullscreen Toggle
+      function toggleFullscreen() {
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen().catch(err => {
+            console.warn(`Fullscreen error: ${err.message}`);
+          });
+        } else {
+          if (document.exitFullscreen) {
+            document.exitFullscreen();
+          }
+        }
+      }
+
+      fullscreenBtn.addEventListener('click', toggleFullscreen);
+
+      // Init buttons
+      prevBtn.disabled = true;
+    })();
+  </script>
+</body>
+
+</html>
